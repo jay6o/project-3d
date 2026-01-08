@@ -29,7 +29,7 @@ for i in range(1000):
     particle = Particle(pg, (screen, screen_width, screen_height), transform, player)
     particles.append(particle)
 
-#square = Square(pg, (screen, screen_width, screen_height), transform, player)
+square = Square(pg, (screen, screen_width, screen_height), transform, player)
 
 #kseg = Item(pg, (screen, screen_width, screen_height), transform, player, "car", "assets/obj/kseg.obj", None, None) # Too many vertices, will lag
 #gift = Item(pg, (screen, screen_width, screen_height), transform, player, "giftbox", "assets/obj/gift.obj", None, None)

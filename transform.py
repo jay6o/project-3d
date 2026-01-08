@@ -27,7 +27,7 @@ def camera_transform(a: list[float | int], c: list[float | int], theta: list[flo
 def project(d, theta):
     e_x = 0
     e_y = 1 # vertically centered
-    e_z = 400 # focal distance / projection distance
+    e_z = 300 # focal distance / projection distance
 
     b_x = ((e_z / d[2]) * d[0]) + e_x
     b_y = -((e_z / d[2]) * d[1]) + e_y

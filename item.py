@@ -1,4 +1,5 @@
 import random
+import math
 class Item:
     def  __init__(self, game, screen, transform, player, name, file: str | None, vertices: dict[str, list[int]] | None, faces=None):
         self.game = game
@@ -69,7 +70,8 @@ class Item:
                 # Draw vertices
                 self.visible = True if b is not None else False
                 if self.visible:
-                    self.game.draw.ellipse(self.screen, (255,255,255), self.game.Rect(self.screen_width / 2 + b[0], self.screen_height / 2 + b[1], 0.1, 0.1))
+                    distance = math.sqrt((v[0]-c[0]) ** 2 + (v[1] - c[1]) ** 2 + (v[2] - c[2]) ** 2)
+                    self.game.draw.ellipse(self.screen, (255,255,255), self.game.Rect(self.screen_width / 2 + b[0], self.screen_height / 2 + b[1], 300/distance, 300/distance))
                     
         return
 
@@ -110,5 +112,6 @@ class Particle(Item):
             # Draw vertices
             self.visible = True if b is not None else False
             if self.visible:
-                self.game.draw.ellipse(self.screen, (255,255,255), self.game.Rect(self.screen_width / 2 + b[0], self.screen_height / 2 + b[1], 0.1, 0.1))
+                distance = math.sqrt((v[0]-c[0]) ** 2 + (v[1] - c[1]) ** 2 + (v[2] - c[2]) ** 2)
+                self.game.draw.ellipse(self.screen, (255,255,255), self.game.Rect(self.screen_width / 2 + b[0], self.screen_height / 2 + b[1], 300/distance, 300/distance))
         return

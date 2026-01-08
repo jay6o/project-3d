@@ -1,7 +1,5 @@
 # 3D Graphics Engine
 
-![cut_snowfall (1)](https://github.com/user-attachments/assets/d3a0392e-4fbe-4e8c-8050-2f93c2e97610)
-
 https://github.com/user-attachments/assets/c709bc28-a0da-4aa5-9aed-d77376a32dc8
 
 # Usage

@@ -16,22 +16,22 @@ class Player:
         #self.game.draw.ellipse(self.screen, self.game.Color(255,255,255), self.game.Rect(self.screen_width / 2 - 10, self.screen_height / 2 - 10, 10, 10), 10)
 
         if self.game.key.get_pressed()[self.game.K_a]:
-            self.c[0] -= self.speed
+            pass
         if self.game.key.get_pressed()[self.game.K_d]:
-            self.c[0] += self.speed
+            pass
         if self.game.key.get_pressed()[self.game.K_s]:
-            self.c[2] -= self.speed
+            pass
         if self.game.key.get_pressed()[self.game.K_w]:
-            self.c[2] += self.speed
+            pass
         if self.game.key.get_pressed()[self.game.K_LEFT]:
-            self.theta[1] -= self.look_speed
+            pass
         if self.game.key.get_pressed()[self.game.K_UP]:
-            self.theta[0] += self.look_speed
+            pass
         if self.game.key.get_pressed()[self.game.K_RIGHT]:
-            self.theta[1] += self.look_speed
+            pass
         if self.game.key.get_pressed()[self.game.K_DOWN]:
-            self.theta[0] -= self.look_speed
-        
+            pass
+
     def get_pos(self):
         return self.c
 

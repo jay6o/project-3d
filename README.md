@@ -5,4 +5,7 @@ This 3D engine was made using perspecitve projection on a pygame window, using o
 
 [You can find the mathematical formulas for perspective projection here](https://en.wikipedia.org/wiki/3D_projection)
 
+## Features
+- Objects scale based on distance from the camera
+- Particle effects using moving points in 3D space
 

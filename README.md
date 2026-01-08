@@ -1,13 +1,13 @@
 # 3D Graphics Engine
 
+## Usage
+
+`python pip install -r requirements.txt && python3 game.py`
+
+# Features
+
+## Particle Effects
 https://github.com/user-attachments/assets/c709bc28-a0da-4aa5-9aed-d77376a32dc8
-
-# Usage
-
-```
-  python
-  pip install -r requirements.txt && python3 game.py
-```
 
 
 # Engine Overview
@@ -28,7 +28,7 @@ Due to the projection mirroring objects when crossing z=0, I needed to add clipp
 
 Particles are scaled using the Euclidean distance formula, along with the camera's field of view to give a sense of depth.
 
-# Features
+# Main Features
 - Perspective Projection
 - Camera rotation (pitch and yaw)
 - Movement in 3D space (x and z axes for now)

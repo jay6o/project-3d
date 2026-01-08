@@ -3,8 +3,8 @@ from math import sin, cos
 
 def x_rot_mat(theta: list[float | int]):
     return np.array([[1, 0, 0],
-            [0, cos(theta[0]), sin(theta[0])],
-            [0, -sin(theta[0]), cos(theta[0])]])
+            [0, cos(theta[0]), -sin(theta[0])],
+            [0, sin(theta[0]), cos(theta[0])]])
 
 def y_rot_mat(theta: list[float | int]):
     return np.array([[cos(theta[1]), 0, -sin(theta[1])],
@@ -30,7 +30,7 @@ def project(d, theta):
     e_z = 400 # focal distance / projection distance
 
     b_x = ((e_z / d[2]) * d[0]) + e_x
-    b_y = ((e_z / d[2]) * d[1]) + e_y
+    b_y = -((e_z / d[2]) * d[1]) + e_y
     return (b_x, b_y)
 
 def compute_2d(a, c, theta):

@@ -26,33 +26,6 @@ class Item:
                         x,y,z = float(curr[1]), float(curr[2]), float(curr[3])
                         self.vertices[v_count] = [x, y, z]
                         v_count += 1
-                    #else:
-                    #    break
-                    #curr = 0
-                    #oid = ''
-                    #while line[curr] != ' ':
-                    #    oid = oid + line[curr]
-                    #    curr += 1
-
-                    #if oid != 'v':
-                    #    break
-
-                    #match oid:
-
-                    #    case 'v':
-                    #        while
-                    #        break
-                        #case 'vt':
-                        #    break
-                        #case 'vn':
-                        #    break
-                        #case 'vp':
-                        #    break
-                        #case 'f':
-                        #    print("")
-                        #    break
-                        #case _:
-                        #    break
             
     def get_name(self):
         return self.name
@@ -100,10 +73,15 @@ class Particle(Item):
         super().__init__(game, screen, transform, player, name, file, vertices, faces)
         self.fall_rate = -random.uniform(-1, -0.01)
         self.vertices = {0: [random.uniform(-100, 100), random.uniform(100, 500), random.uniform(-100, 100)]}
+        self.stop = False
  
     
     def update(self):
-        self.vertices[0][1] -= self.fall_rate
+        if not self.stop:
+            if self.vertices[0][1] -self.fall_rate <= 0.00:
+                self.vertices[0][1] = 0
+            else:
+                self.vertices[0][1] -= self.fall_rate
         for k, v in self.vertices.items():
             c = self.player.get_pos()
             theta = self.player.get_theta()
@@ -112,6 +90,7 @@ class Particle(Item):
             # Draw vertices
             self.visible = True if b is not None else False
             if self.visible:
-                distance = math.sqrt((v[0]-c[0]) ** 2 + (v[1] - c[1]) ** 2 + (v[2] - c[2]) ** 2)
-                self.game.draw.ellipse(self.screen, (255,255,255), self.game.Rect(self.screen_width / 2 + b[0], self.screen_height / 2 + b[1], 300/distance, 300/distance))
+                distance = math.sqrt(((v[0]-c[0]) ** 2) + ((v[1] - c[1]) ** 2) + ((v[2] - c[2]) ** 2))
+                size = 1/0.9 * 200/distance
+                self.game.draw.ellipse(self.screen, (255,255,255), self.game.Rect(self.screen_width / 2 + b[0] - size/2, self.screen_height / 2 + b[1] - size/2, size, size))
         return

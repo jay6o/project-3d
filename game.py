@@ -1,6 +1,6 @@
 import pygame as pg
 import tkinter
-from item import Square, Item, Particle
+from item import Square, Particle
 from player import Player
 import transform
 from ui import UI

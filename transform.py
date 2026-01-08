@@ -24,7 +24,7 @@ def camera_transform(a: list[float | int], c: list[float | int], theta: list[flo
     d = xrm @ yrm @ zrm @ (np.subtract(a, c))
     return d
 
-def project(d, theta):
+def project(d):
     e_x = 0
     e_y = 1 # vertically centered
     e_z = 300 # focal distance / projection distance
@@ -39,6 +39,6 @@ def compute_2d(a, c, theta):
     # if it mirrors we must clip it
     if d[2] <= 0:
         return None
-    return project(d, theta)
+    return project(d)
 
 

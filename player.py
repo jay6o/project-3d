@@ -3,14 +3,14 @@ from math import cos, sin
 
 #Player Eye for viewing and moving around 3D world
 class Player:
-    def __init__(self, game, screen, c=[0, 10, -100], theta=[0,0,0]):
+    def __init__(self, game, screen, c=np.array([0, 10, -100]), theta=np.array([0,0,0])):
         self.game = game
         self.screen, self.screen_width, self.screen_height = screen
 
         self.c = c
         self.theta = theta
-        self.speed = 1
-        self.look_speed = 0.05
+        self.speed = 0.5
+        self.look_speed = 0.03
         return
 
     def update(self):
@@ -18,18 +18,22 @@ class Player:
 
         #4-Directional movement
         if self.game.key.get_pressed()[self.game.K_a]:
+            print(self.c)
             self.c[0] += self.speed * (sin(self.theta[1] - np.pi / 2));
             self.c[1] = self.c[1];
             self.c[2] += self.speed * cos(self.theta[1] - np.pi / 2);
         if self.game.key.get_pressed()[self.game.K_d]:
+            print(self.c)
             self.c[0] -= self.speed * (sin(self.theta[1] - np.pi / 2));
             self.c[1] = self.c[1];
             self.c[2] -= self.speed * cos(self.theta[1] - np.pi / 2);
         if self.game.key.get_pressed()[self.game.K_s]:
+            print(self.c)
             self.c[0] -= self.speed * sin(self.theta[1]);
             self.c[1] = self.c[1];
             self.c[2] -= self.speed * cos(self.theta[1]);
         if self.game.key.get_pressed()[self.game.K_w]:
+            print(self.c)
             self.c[0] += self.speed * sin(self.theta[1]);
             self.c[1] = self.c[1];
             self.c[2] += self.speed * cos(self.theta[1]);

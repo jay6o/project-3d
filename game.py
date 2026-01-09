@@ -1,6 +1,6 @@
 import pygame as pg
 import tkinter
-from item import Square, Particle
+from model import Square, Particle
 from player import Player
 import transform
 from ui import UI
@@ -21,31 +21,35 @@ clock = pg.time.Clock()
 running = True
 
 
-player = Player(pg, (screen, screen_width, screen_height))
-ui = UI(pg, (screen, screen_width, screen_height), player)
+updatables = []
 
-particles = []
+player = Player(pg, (screen, screen_width, screen_height))
+updatables.append(player)
+ui = UI(pg, (screen, screen_width, screen_height), player)
+updatables.append(ui)
+
+
 for i in range(1000):
     particle = Particle(pg, (screen, screen_width, screen_height), transform, player)
-    particles.append(particle)
+    updatables.append(particle)
 
-square = Square(pg, (screen, screen_width, screen_height), transform, player)
+#square = Square(pg, (screen, screen_width, screen_height), transform, player)
+#updatables.append(square)
 
-#kseg = Item(pg, (screen, screen_width, screen_height), transform, player, "car", "assets/obj/kseg.obj", None, None) # Too many vertices, will lag
-#gift = Item(pg, (screen, screen_width, screen_height), transform, player, "giftbox", "assets/obj/gift.obj", None, None)
+#kseg = Model(pg, (screen, screen_width, screen_height), transform, player, "car", "assets/obj/kseg.obj", None, None) # Too many vertices, will lag
+#gift = Model(pg, (screen, screen_width, screen_height), transform, player, "giftbox", "assets/obj/gift.obj", None, None)
 
 while running:
     for event in pg.event.get():
         if event.type == pg.QUIT:
             running = False
+        pass
 
     screen.fill("gray16")
 
     ## RENDER HERE
-    player.update()
-    ui.update()
-    for particle in particles:
-        particle.update()
+    for item in updatables:
+        item.update()
 
     #gift.update()
 

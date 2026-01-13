@@ -29,11 +29,9 @@ def project(a: np.ndarray, c: np.ndarray, theta: np.ndarray) -> np.ndarray:
     e_x = 0
     e_y = 1 # vertically centered
     e_z = 300 # focal distance / projection distance
-    #print(d)
 
 
     b_x = (e_z / d[:, 2]) * d[:, 0] + e_x
     b_y = -((e_z / d[:, 2]) * d[:, 1]) + e_y
-    #print(b_x, b_y)
     return np.column_stack((b_x,b_y))
 

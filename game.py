@@ -1,6 +1,6 @@
 import pygame as pg
 import tkinter
-from model import Square, Particle
+from model import Cube, Particle
 from player import Player
 import transform
 from ui import UI
@@ -29,12 +29,12 @@ ui = UI(pg, (screen, screen_width, screen_height), player)
 updatables.append(ui)
 
 
-for i in range(1000):
-    particle = Particle(pg, (screen, screen_width, screen_height), transform, player)
-    updatables.append(particle)
+#for i in range(1000):
+#    particle = Particle(pg, (screen, screen_width, screen_height), transform, player)
+#    updatables.append(particle)
 
-#square = Square(pg, (screen, screen_width, screen_height), transform, player)
-#updatables.append(square)
+cube = Cube(pg, (screen, screen_width, screen_height), transform, player)
+updatables.append(cube)
 
 #kseg = Model(pg, (screen, screen_width, screen_height), transform, player, "car", "assets/obj/kseg.obj", None, None) # Too many vertices, will lag
 #gift = Model(pg, (screen, screen_width, screen_height), transform, player, "giftbox", "assets/obj/gift.obj", None, None)

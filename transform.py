@@ -24,14 +24,23 @@ def camera_transform(model: np.ndarray, camera: np.ndarray, theta: np.ndarray):
     d = (xrm @ yrm @ zrm @ (model - camera).T).T
     return d
 
-def project(a: np.ndarray, c: np.ndarray, theta: np.ndarray) -> np.ndarray: 
+def project(a: np.ndarray, c: np.ndarray, theta: np.ndarray) -> np.ndarray | None: 
     d = camera_transform(a, c, theta)
+    if len(d.shape) == 1 and d[2] <= 0:
+        return None
+
+
     e_x = 0
     e_y = 1 # vertically centered
     e_z = 300 # focal distance / projection distance
+    if len(d.shape) == 2:
+        if d[:,2] <= 0:
+            return None
 
-
-    b_x = (e_z / d[:, 2]) * d[:, 0] + e_x
-    b_y = -((e_z / d[:, 2]) * d[:, 1]) + e_y
+        b_x = (e_z / d[:, 2]) * d[:, 0] + e_x
+        b_y = -((e_z / d[:, 2]) * d[:, 1]) + e_y
+    else:
+        b_x = (e_z / d[2]) * d[0] + e_x
+        b_y = -((e_z / d[2]) * d[1]) + e_y
     return np.column_stack((b_x,b_y))
 

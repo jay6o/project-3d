@@ -104,7 +104,7 @@ class Particle(Model):
         # Draw vertices
         if self.visible:
             distance = math.sqrt(((self.v[0,0]-c[0]) ** 2) + ((self.v[0,1] - c[1]) ** 2) + ((self.v[0,2] - c[2]) ** 2))
-            size = 1/0.9 * 200/distance
+            size = 200/distance
             self.game.draw.ellipse(self.screen, (255,255,255), self.game.Rect(self.screen_width / 2 + self.b[0,0] - size/2, self.screen_height / 2 + self.b[0,1] - size/2, size, size))
         self.visible = True
         return

@@ -18,8 +18,8 @@ class Player:
         sx, sy, sz = sin(self.theta[0]), sin(self.theta[1]), sin(self.theta[2])
 
         Rx = np.array([[1, 0, 0],
-                       [0, cx, sx],
-                       [0, -sx, cx]])
+                       [0, cx, -sx],
+                       [0, sx, cx]])
 
         Ry = np.array([[cy, 0, -sy],
                        [0, 1, 0],

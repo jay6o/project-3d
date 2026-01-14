@@ -18,20 +18,22 @@ class Model:
         self.transformed = None
         self.v_width = 5
         self.visible = True
+        self.frame_loaded = 0
 
         if self.file is not None and self.v is None:
             filetype = self.file.split('.')[-1]
             match filetype:
                 case 'obj':
-                    self.v = {}
+                    self.v = []
                     v_count = 0
                     with open(self.file, 'r') as f:
                         for line in f:
                             curr = line.split()
                             if curr[0] == 'v':
                                 x,y,z = float(curr[1]), float(curr[2]), float(curr[3])
-                                self.v[v_count] = [x, y, z]
+                                self.v.append([x, y, z])
                                 v_count += 1
+                    self.v = np.array(self.v)
                     return
                 case _:
                     print("Unsupported file format, use a .obj")
@@ -46,15 +48,14 @@ class Model:
     def update(self):
         if self.v is not None:
             for v in self.v:
-                print(v)
                 c = self.player.get_pos()
-                b = self.transform.project(v, c, self.player.get_theta())
-
+                b = self.transform.project(v, self.player.get_pos(), self.player.get_rotation())
                 # Draw vertices
                 self.visible = True if b is not None else False
                 if self.visible:
                     distance = math.sqrt((v[0]-c[0]) ** 2 + (v[1] - c[1]) ** 2 + (v[2] - c[2]) ** 2)
                     self.game.draw.ellipse(self.screen, (255,255,255), self.game.Rect(self.screen_width / 2 + b[0,0], self.screen_height / 2 + b[0,1], 300/distance, 300/distance))
+        self.visible = True
         return
 
     def draw_faces(self):

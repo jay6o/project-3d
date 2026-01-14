@@ -13,6 +13,24 @@ class Player:
         self.look_speed = 0.03
         return
 
+    def get_rotation(self):
+        cx, cy, cz = cos(self.theta[0]), cos(self.theta[1]), cos(self.theta[2])
+        sx, sy, sz = sin(self.theta[0]), sin(self.theta[1]), sin(self.theta[2])
+
+        Rx = np.array([[1, 0, 0],
+                       [0, cx, sx],
+                       [0, -sx, cx]])
+
+        Ry = np.array([[cy, 0, -sy],
+                       [0, 1, 0],
+                       [sy, 0, cy]])
+
+        Rz = np.array([[cz, sz, 0],
+                       [-sz, cz, 0],
+                       [0, 0, 1]])
+
+        return Rx @ Ry @ Rz
+
     def update(self):
         #self.game.draw.ellipse(self.screen, self.game.Color(255,255,255), self.game.Rect(self.screen_width / 2 - 10, self.screen_height / 2 - 10, 10, 10), 10)
 
@@ -40,8 +58,12 @@ class Player:
         if self.game.key.get_pressed()[self.game.K_DOWN]:
             self.theta[0] -= self.look_speed
 
+        self.rotation = self.get_rotation()
+        print(self.rotation)
+
     def get_pos(self):
         return self.c
 
     def get_theta(self):
         return self.theta
+

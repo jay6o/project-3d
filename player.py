@@ -29,7 +29,8 @@ class Player:
                        [-sz, cz, 0],
                        [0, 0, 1]])
 
-        return Rx @ Ry @ Rz
+        res = Rx @ Ry @ Rz
+        return res
 
     def update(self):
         #self.game.draw.ellipse(self.screen, self.game.Color(255,255,255), self.game.Rect(self.screen_width / 2 - 10, self.screen_height / 2 - 10, 10, 10), 10)
@@ -59,7 +60,6 @@ class Player:
             self.theta[0] -= self.look_speed
 
         self.rotation = self.get_rotation()
-        print(self.rotation)
 
     def get_pos(self):
         return self.c

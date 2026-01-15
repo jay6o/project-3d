@@ -38,9 +38,10 @@ with cProfile.Profile() as pr:
     cube = Cube(pg, (screen, screen_width, screen_height), transform, player)
     updatables.append(cube)
     
-    #kseg = Model(pg, (screen, screen_width, screen_height), transform, player, "car", "assets/obj/kseg.obj", None, None) # Too many vertices, will lag
-    #updatables.append(kseg)
+    kseg = Model(pg, (screen, screen_width, screen_height), transform, player, "car", "assets/obj/kseg.obj", None, None) # Too many vertices, will lag
+    updatables.append(kseg)
     #gift = Model(pg, (screen, screen_width, screen_height), transform, player, "giftbox", "assets/obj/gift.obj", None, None)
+    #updatables.append(gift)
     
     while running:
         for event in pg.event.get():

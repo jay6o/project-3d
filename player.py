@@ -35,7 +35,7 @@ class Player:
     def update(self):
         #self.game.draw.ellipse(self.screen, self.game.Color(255,255,255), self.game.Rect(self.screen_width / 2 - 10, self.screen_height / 2 - 10, 10, 10), 10)
 
-        #4-Directional movement
+        #6-Directional movement
         if self.game.key.get_pressed()[self.game.K_a]:
             self.c[0] += self.speed * (sin(self.theta[1] - np.pi / 2));
             self.c[2] += self.speed * cos(self.theta[1] - np.pi / 2);
@@ -48,6 +48,11 @@ class Player:
         if self.game.key.get_pressed()[self.game.K_w]:
             self.c[0] += self.speed * sin(self.theta[1]);
             self.c[2] += self.speed * cos(self.theta[1]);
+        if self.game.key.get_pressed()[self.game.K_LSHIFT]:
+            self.c[1] -= self.speed;
+        if self.game.key.get_pressed()[self.game.K_SPACE]:
+            self.c[1] += self.speed;
+
 
         # Pitch, yaw, no roll camera rotations
         if self.game.key.get_pressed()[self.game.K_LEFT]:

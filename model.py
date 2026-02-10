@@ -16,6 +16,7 @@ class Model:
         self.vn = None
         self.vp = None
         self.f = faces
+        self.l = None
         self.transformed = None
         self.v_width = 5
         self.visible = True
@@ -26,16 +27,48 @@ class Model:
             match filetype:
                 case 'obj':
                     self.v = []
+                    self.vt = []
+                    self.vn = []
+                    self.vp = []
+                    self.f = []
+                    self.l = []
                     v_count = 0
                     with open(self.file, 'r') as f:
                         for line in f:
-                            curr = line.split()
+                            curr = line.strip().split()
                             if len(curr) > 0:
                                 if curr[0] == 'v':
                                     x,y,z = float(curr[1]), float(curr[2]), float(curr[3])
                                     self.v.append([x, y, z])
                                     v_count += 1
+                                if curr[0] == 'vt':
+                                    copy = curr.copy()
+                                    copy.pop(0)
+                                    self.vt.append([float(i) for i in copy])
+                                    pass
+                                if curr[0] == 'vn':
+                                    x,y,z = float(curr[1]), float(curr[2]), float(curr[3])
+                                    self.vn.append([x, y, z])
+                                if curr[0] == 'vp':
+                                    copy = curr.copy()
+                                    copy.pop(0)
+                                    self.vp.append([float(i) for i in copy])
+                                if curr[0] == 'f':
+                                    copy = curr.copy()
+                                    copy.pop(0)
+                                    face = []
+                                    for i in range(len(copy)):
+                                        start = 0
+                                        to = len(curr[i])
+
+                                    pass
+                                if curr[0] == 'l':
+                                    pass
                     self.v = np.array(self.v)
+                    self.vt = np.array(self.vt)
+                    self.vn = np.array(self.vn)
+                    self.vp = np.array(self.vp)
+                    self.f = np.array(self.f)
                     return
                 case _:
                     print("Unsupported file format, use a .obj")
